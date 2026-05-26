@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#071426,#0f3c73,#1d65c1);
+min-height:100vh;
+color:white;
+padding:40px 20px;
+}
+
+/* CONTAINER */
+
+.admin-container{
+max-width:1300px;
+margin:auto;
+text-align:center;
+}
+
+.admin-container h1{
+font-size:42px;
+color:#59d5ff;
+text-shadow:0 0 18px #59d5ff;
+margin-bottom:10px;
+}
+
+.admin-container p{
+opacity:0.9;
+margin-bottom:35px;
+}
+
+/* UPLOAD BOX */
+
+.upload-box{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:35px;
+}
+
+#excelFile{
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.15);
+padding:14px;
+border-radius:16px;
+color:white;
+cursor:pointer;
+backdrop-filter:blur(12px);
+}
+
+#uploadBtn{
+border:none;
+padding:14px 28px;
+border-radius:16px;
+background:#25b8ff;
+color:white;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 0 18px #25b8ff;
+}
+
+#uploadBtn:hover{
+transform:scale(1.05);
+background:#00a6ff;
+}
+
+/* STATUS */
+
+#statusBox{
+margin-bottom:30px;
+font-size:18px;
+font-weight:600;
+color:#7cff9d;
+}
+
+/* TABLE */
+
+.table-wrapper{
+overflow-x:auto;
+border-radius:22px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(14px);
+padding:20px;
+box-shadow:0 0 25px rgba(0,0,0,0.25);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:900px;
+}
+
+th{
+background:#1a7fe0;
+padding:16px;
+font-size:15px;
+}
+
+td{
+padding:16px;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+tr:hover{
+background:rgba(255,255,255,0.08);
+transition:.3s;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.admin-container h1{
+font-size:30px;
+}
+
+.upload-box{
+flex-direction:column;
+}
+
+#excelFile{
+width:100%;
+}
+
+#uploadBtn{
+width:100%;
+}
+
+}

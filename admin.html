@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel - AjraStoreBOT</title>
+
+<link rel="stylesheet" href="admin.css">
+
+<!-- SHEETJS (BACA EXCEL) -->
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+</head>
+<body>
+
+<div class="admin-container">
+
+    <h1>
+        ADMIN PANEL
+    </h1>
+
+    <p>
+        Upload Database Excel AjraStoreBOT
+    </p>
+
+
+    <!-- UPLOAD BOX -->
+
+    <div class="upload-box">
+
+        <input
+        type="file"
+        id="excelFile"
+        accept=".xlsx,.csv"
+        >
+
+        <button id="uploadBtn">
+
+            Upload Data
+
+        </button>
+
+    </div>
+
+
+    <!-- STATUS -->
+
+    <div id="statusBox">
+
+    </div>
+
+
+    <!-- TABLE PREVIEW -->
+
+    <div class="table-wrapper">
+
+        <table id="previewTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>IGG ID</th>
+                    <th>CUSTOMER</th>
+                    <th>USERNAME</th>
+                    <th>Expired</th>
+                    <th>Sisa Hari</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script src="admin.js"></script>
+
+</body>
+</html>
