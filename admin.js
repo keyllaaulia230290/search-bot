@@ -146,12 +146,46 @@ return;
 
 
 
-// SAVE DATABASE
+// DOWNLOAD JSON
 
-localStorage.setItem(
-"ajraDatabase",
-JSON.stringify(jsonData)
+const dataStr =
+JSON.stringify(
+jsonData,
+null,
+2
 );
+
+const blob =
+new Blob(
+[dataStr],
+{
+type:"application/json"
+}
+);
+
+const link =
+document.createElement("a");
+
+link.href =
+URL.createObjectURL(blob);
+
+link.download =
+"database.json";
+
+link.click();
+
+
+
+statusBox.innerHTML=`
+
+✅ ${jsonData.length}
+data berhasil!
+
+database.json berhasil dibuat.
+
+Upload file itu ke hosting.
+
+`;
 
 
 

@@ -1,6 +1,23 @@
-// LOAD DATABASE
+// DATABASE ONLINE
 
-let database = JSON.parse(localStorage.getItem("ajraDatabase")) || [];
+let database = [];
+
+fetch("database.json")
+  .then((res) => res.json())
+
+  .then((data) => {
+    database = data;
+
+    console.log("DATABASE LOADED");
+
+    console.log(database);
+
+    console.log(database[0]);
+  })
+
+  .catch((err) => {
+    console.error("GAGAL LOAD DATABASE", err);
+  });
 
 // LOADING SCREEN
 
@@ -26,72 +43,40 @@ function normalize(text) {
     .toLowerCase();
 }
 
-function formatDate(value){
+function formatDate(value) {
+  if (!value) return "-";
 
-if(!value) return "-";
+  // HANDLE EXCEL SERIAL DATE
 
+  if (typeof value === "number") {
+    const excelDate = new Date((value - 25569) * 86400 * 1000);
 
+    const day = String(excelDate.getDate()).padStart(2, "0");
 
-// HANDLE EXCEL SERIAL DATE
+    const month = String(excelDate.getMonth() + 1).padStart(2, "0");
 
-if(typeof value === "number"){
+    const year = excelDate.getFullYear();
 
-const excelDate =
-new Date(
-(value - 25569) * 86400 * 1000
-);
+    return `${day}/${month}/${year}`;
+  }
 
-const day =
-String(
-excelDate.getDate()
-).padStart(2,"0");
+  // HANDLE NORMAL DATE STRING
 
-const month =
-String(
-excelDate.getMonth()+1
-).padStart(2,"0");
+  const normalDate = new Date(value);
 
-const year =
-excelDate.getFullYear();
+  if (!isNaN(normalDate)) {
+    const day = String(normalDate.getDate()).padStart(2, "0");
 
-return `${day}/${month}/${year}`;
+    const month = String(normalDate.getMonth() + 1).padStart(2, "0");
 
-}
+    const year = normalDate.getFullYear();
 
+    return `${day}/${month}/${year}`;
+  }
 
+  // FALLBACK
 
-// HANDLE NORMAL DATE STRING
-
-const normalDate =
-new Date(value);
-
-
-
-if(!isNaN(normalDate)){
-
-const day =
-String(
-normalDate.getDate()
-).padStart(2,"0");
-
-const month =
-String(
-normalDate.getMonth()+1
-).padStart(2,"0");
-
-const year =
-normalDate.getFullYear();
-
-return `${day}/${month}/${year}`;
-
-}
-
-
-
-// FALLBACK
-
-return value;
-
+  return value;
 }
 
 // SEARCH FUNCTION
@@ -113,9 +98,13 @@ function searchData() {
     searchLoading.style.display = "none";
 
     const found = database.find((item) => {
-      const igg = normalize(item["IGG ID"]);
+      const igg = String(item["IGG ID"] || "")
+        .trim()
+        .toLowerCase();
 
-      const customer = normalize(item["CUSTOMER"]);
+      const customer = String(item["CUSTOMER"] || "")
+        .trim()
+        .toLowerCase();
 
       return igg.includes(keyword) || customer.includes(keyword);
     });
